@@ -7,9 +7,9 @@ for i in range(len(input_data)):
     current = int(input_data[i])
     if previous < current:
         counter_p1 += 1
-    A = int(input_data[i-3]) + int(input_data[i-2]) + int(input_data[i-1])
-    B = int(input_data[i-2]) + int(input_data[i-1]) + int(input_data[i])
-    if A < B:
+    previous_p2 = int(input_data[i-3])
+    current_p2 = int(input_data[i])
+    if previous_p2 < current_p2:
         counter_p2 += 1
 
 print("p1: " + str(counter_p1))
