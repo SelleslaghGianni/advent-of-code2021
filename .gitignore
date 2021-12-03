@@ -1,3 +1,5 @@
 input.txt
 input.txt:Zone.Identifier
 /.vscode
+input_parser.py
+/day**/.vscode
