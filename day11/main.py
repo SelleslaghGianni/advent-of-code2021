@@ -16,17 +16,16 @@ for line in input_data:
     field.append(row)
     row = []
 
-direction_x = [-1, 0, 1, 0, -1, 1, -1, 1]
-direction_y = [0, 1, 0, -1, -1, -1, 1, 1]
-
 flashes = 0
 flashing = set()
-for day in range(10000):
+not_synchronized = True
+day = 0
+while not_synchronized:
     if day == 100:
         print("Part 1: " + str(flashes))
     if len(flashing) == 100:
         print("Part 2: " + str(day))
-        exit()
+        not_synchronized = False
     flashing = set()
     for j in range(100):
         for x in range(len(field)):
@@ -38,13 +37,15 @@ for day in range(10000):
                         flashing.add((x, y))
                         flashes += 1
                         field[x][y] = 0
-                        for direction in range(8):
-                            x_dir = x + direction_x[direction]
-                            y_dir = y + direction_y[direction]
-                            if (
-                                0 <= x_dir < len(field)
-                                and 0 <= y_dir < len(field[0])
-                                and (x, y) in flashing
-                                and (x_dir, y_dir) not in flashing
-                            ):
-                                field[x_dir][y_dir] += 1
+                        for xx in [-1, 0, 1]:
+                            for yy in [-1, 0, 1]:
+                                x_dir = x + xx
+                                y_dir = y + yy
+                                if (
+                                    0 <= x_dir < len(field)
+                                    and 0 <= y_dir < len(field[0])
+                                    and (x, y) in flashing
+                                    and (x_dir, y_dir) not in flashing
+                                ):
+                                    field[x_dir][y_dir] += 1
+    day += 1
